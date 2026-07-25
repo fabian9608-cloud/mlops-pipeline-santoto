@@ -1,0 +1,72 @@
+{
+  "contract_name": "Iris Model Data Contract",
+  "contract_version": "1.0.0",
+  "description": "Contrato oficial para los datos de entrada del modelo de clasificación Iris.",
+  "model_name": "iris_random_forest_classifier",
+  "target_variable": {
+    "name": "species",
+    "type": "integer",
+    "allowed_values": [0, 1, 2],
+    "labels": {
+      "0": "setosa",
+      "1": "versicolor",
+      "2": "virginica"
+    }
+  },
+  "input_features": {
+    "sepal_length": {
+      "description": "Longitud del sépalo en centímetros.",
+      "type": "number",
+      "required": true,
+      "nullable": false,
+      "minimum": 4.0,
+      "maximum": 8.0,
+      "unit": "centimeters"
+    },
+    "sepal_width": {
+      "description": "Ancho del sépalo en centímetros.",
+      "type": "number",
+      "required": true,
+      "nullable": false,
+      "minimum": 2.0,
+      "maximum": 4.5,
+      "unit": "centimeters"
+    },
+    "petal_length": {
+      "description": "Longitud del pétalo en centímetros.",
+      "type": "number",
+      "required": true,
+      "nullable": false,
+      "minimum": 1.0,
+      "maximum": 7.0,
+      "unit": "centimeters"
+    },
+    "petal_width": {
+      "description": "Ancho del pétalo en centímetros.",
+      "type": "number",
+      "required": true,
+      "nullable": false,
+      "minimum": 0.1,
+      "maximum": 2.5,
+      "unit": "centimeters"
+    }
+  },
+  "valid_input_example": {
+    "sepal_length": 5.1,
+    "sepal_width": 3.5,
+    "petal_length": 1.4,
+    "petal_width": 0.2
+  },
+  "invalid_input_example": {
+    "sepal_length": "cinco",
+    "sepal_width": null,
+    "petal_length": 20.0,
+    "petal_width": -1.0
+  },
+  "invalid_input_reasons": [
+    "sepal_length no es un dato numérico.",
+    "sepal_width contiene un valor nulo.",
+    "petal_length supera el rango máximo permitido.",
+    "petal_width es inferior al rango mínimo permitido."
+  ]
+}
