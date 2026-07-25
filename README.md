@@ -397,10 +397,14 @@ Durante el desarrollo del laboratorio se verificó correctamente:
 6.) Ejecución satisfactoria de las pruebas automatizadas.
 
 ---
+# Conclusiones
+
+Este proyecto implementa un pipeline reproducible para el conjunto de datos Iris aplicando principios de MLOps. Mediante la automatización del flujo de trabajo, la validación de la calidad de los datos, el entrenamiento del modelo, el registro de experimentos con MLflow y las pruebas automatizadas, se garantiza un proceso organizado, repetible y fácil de mantener.
 
 # Autor
 
 **Eduar Fabian Castelblanco Galindo**
-Especialización en Ciencia de Datos
-Universidad Santo Tomás
-Seminario de Grado II
+
+- Especialización en Ciencia de Datos
+- Universidad Santo Tomás
+- Seminario de Grado II
