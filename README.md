@@ -70,6 +70,59 @@ MLOPS-IRIS-SANTOTO
 ```
 
 ---
+---
+
+# Descripción de los componentes del proyecto
+
+A continuación, se describe el propósito de cada uno de los archivos principales que conforman el pipeline. Cada componente cumple una responsabilidad específica dentro del flujo de trabajo, permitiendo que el proceso sea organizado, reproducible y fácil de comprender.
+
+## run_pipeline.py
+
+Es el script de orquestación del proyecto. Su función es ejecutar automáticamente todas las etapas del pipeline en el orden correcto: preparación de datos, validación, entrenamiento del modelo y ejecución de pruebas automatizadas. Gracias a este archivo, todo el proceso puede ejecutarse mediante un único comando.
+
+---
+
+## src/prepare.py
+
+Este archivo realiza la preparación del conjunto de datos Iris. Carga el dataset original, realiza la división entre datos de entrenamiento y prueba y genera los archivos **train.csv** y **test.csv**, los cuales serán utilizados en las siguientes etapas del pipeline.
+
+---
+
+## src/validate_data.py
+
+Implementa el control de calidad de los datos sin utilizar librerías especializadas. Verifica que los tipos de datos sean correctos, que no existan valores nulos, que los datos se encuentren dentro de los rangos permitidos y que la estructura del conjunto de datos sea consistente antes de permitir el entrenamiento del modelo.
+
+---
+
+## src/train.py
+
+Entrena un modelo de clasificación Random Forest utilizando los datos previamente validados. Durante esta etapa se calculan las métricas de desempeño, se almacena el modelo entrenado y se registra automáticamente el experimento mediante MLflow para garantizar la trazabilidad del proceso.
+
+---
+
+## tests/test_model.py
+
+Contiene las pruebas automatizadas del proyecto. Estas verifican el correcto funcionamiento del modelo entrenado y del pipeline, permitiendo comprobar que los resultados obtenidos cumplen las condiciones esperadas antes de finalizar la ejecución.
+
+---
+
+## data_contract.json
+
+Define el contrato oficial de datos del proyecto. En este archivo se especifican las variables esperadas, los tipos de datos, los rangos permitidos, los valores válidos y ejemplos de entradas correctas e incorrectas que servirán como referencia para futuras inferencias del modelo.
+
+---
+
+## requirements.txt
+
+Relaciona todas las dependencias necesarias para ejecutar correctamente el proyecto. Su utilización garantiza que cualquier usuario pueda instalar las mismas versiones de las librerías y reproducir el pipeline en otro equipo.
+
+---
+
+## README.md
+
+Contiene la documentación técnica del proyecto. Describe la estructura del pipeline, las instrucciones de instalación, la ejecución de cada etapa y el flujo general de trabajo, permitiendo que cualquier usuario pueda reproducir el proyecto desde cero.
+
+---
 
 # Creación del entorno
 
@@ -214,6 +267,29 @@ Dentro del experimento se registran:
 
 ---
 
+# Flujo general del Pipeline
+
+```text
+prepare.py
+      │
+      ▼
+validate_data.py
+      │
+      ▼
+train.py
+      │
+      ▼
+Registro en MLflow
+      │
+      ▼
+Pruebas automatizadas (pytest)
+      │
+      ▼
+Pipeline finalizado correctamente
+```
+
+El flujo inicia con la preparación del conjunto de datos, continúa con el control de calidad, posteriormente realiza el entrenamiento del modelo y registra el experimento en MLflow. Finalmente, ejecuta las pruebas automatizadas para verificar el correcto funcionamiento del pipeline antes de finalizar la ejecución.
+
 # Ejecución del pipeline completo
 
 El proyecto incluye un script de automatización.
@@ -324,7 +400,7 @@ Durante el desarrollo del laboratorio se verificó correctamente:
 
 # Autor
 
-**Sergio Puerto Moreno**
+**Eduar Fabian Castelblanco Galindo**
 Especialización en Ciencia de Datos
 Universidad Santo Tomás
 Seminario de Grado II
